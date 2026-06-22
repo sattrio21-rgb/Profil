@@ -31,10 +31,10 @@ const ProjectPage = () => {
   return (
     <>
       {/* Header */}
-      <section className="pt-20 pb-12">
+      <section className="pt-20 pb-6">
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="max-w-2xl">
-            <Link to="/" replace className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors mb-6">
+            <Link to="/#project" replace className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors mb-6">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
               Kembali
             </Link>
@@ -64,7 +64,7 @@ const ProjectPage = () => {
                     <div className="p-5">
                       <h3 className="text-lg font-semibold text-white mb-2">{project.judul}</h3>
                       {project.deskripsi && (
-                        <p className="text-gray-400 text-sm mb-3">{project.deskripsi}</p>
+                        <p className="text-gray-400 text-sm mb-3 line-clamp-2">{project.deskripsi}</p>
                       )}
                       {project.teknologi && project.teknologi.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-4">

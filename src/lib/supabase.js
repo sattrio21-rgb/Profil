@@ -38,17 +38,3 @@ export const uploadFile = async (bucket, file, oldPath = null) => {
 
   return urlData.publicUrl
 }
-
-// Helper: Delete file from Supabase Storage
-export const deleteFile = async (bucket, filePath) => {
-  if (!filePath) return
-  const { error } = await supabase.storage.from(bucket).remove([filePath])
-  if (error) console.error('Error deleting file:', error)
-}
-
-// Helper: Get public URL from path
-export const getPublicUrl = (bucket, path) => {
-  if (!path) return null
-  const { data } = supabase.storage.from(bucket).getPublicUrl(path)
-  return data.publicUrl
-}

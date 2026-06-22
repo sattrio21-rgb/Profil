@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
+import ScrollToTop from './components/ui/ScrollToTop'
 
 // Layouts
 import PortfolioLayout from './components/layout/PortfolioLayout'
@@ -63,6 +64,7 @@ const GuestRoute = ({ children }) => {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<PortfolioLayout><HomePage /></PortfolioLayout>} />

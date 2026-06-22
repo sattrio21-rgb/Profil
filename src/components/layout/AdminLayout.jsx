@@ -12,7 +12,6 @@ const menuItems = [
 
 const AdminLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [flash, setFlash] = useState(null)
   const location = useLocation()
   const navigate = useNavigate()
   const { signOut } = useAuth()
@@ -111,15 +110,6 @@ const AdminLayout = ({ children }) => {
             <div className="w-10" />
           </div>
         </header>
-
-        {/* Flash Message */}
-        {flash && (
-          <div className="mx-6 mt-6">
-            <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg">
-              {flash}
-            </div>
-          </div>
-        )}
 
         {/* Page Content */}
         <main className="p-6">

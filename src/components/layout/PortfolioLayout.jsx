@@ -47,8 +47,9 @@ const PortfolioLayout = ({ children }) => {
               <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4">Navigasi</h4>
               <div className="flex flex-col gap-2">
                 <Link to="/" className="text-gray-400 hover:text-white text-sm transition-colors">Profil</Link>
-                <Link to="/pengalaman" className="text-gray-400 hover:text-white text-sm transition-colors">Pengalaman</Link>
-                <Link to="/project" className="text-gray-400 hover:text-white text-sm transition-colors">Project</Link>
+                <Link to="/#pendidikan" className="text-gray-400 hover:text-white text-sm transition-colors">Pendidikan</Link>
+                <Link to="/#pengalaman" className="text-gray-400 hover:text-white text-sm transition-colors">Pengalaman</Link>
+                <Link to="/#project" className="text-gray-400 hover:text-white text-sm transition-colors">Project</Link>
               </div>
             </div>
 

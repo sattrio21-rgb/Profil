@@ -295,28 +295,6 @@ const HomePage = () => {
           </div>
         </section>
       )}
-
-      {/* Contact Section */}
-      <section className="py-12">
-        <div className="max-w-6xl mx-auto px-6 sm:px-8 text-center">
-          <ScrollAnimate>
-            <h2 className="text-2xl font-bold text-white mb-4">Hubungi Saya</h2>
-            <p className="text-gray-400 mb-6">Terhubung dengan saya melalui media sosial</p>
-            <div className="flex justify-center gap-4">
-              {profile?.email && (
-                <a href={`mailto:${profile.email}`} className="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg font-medium transition-colors">
-                  Email
-                </a>
-              )}
-              {profile?.linkedin && (
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="px-6 py-3 bg-white/5 hover:bg-white/10 text-white rounded-lg font-medium transition-colors border border-white/10">
-                  LinkedIn
-                </a>
-              )}
-            </div>
-          </ScrollAnimate>
-        </div>
-      </section>
     </div>
   )
 }
