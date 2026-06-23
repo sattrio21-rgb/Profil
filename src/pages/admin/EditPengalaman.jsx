@@ -307,7 +307,7 @@ const EditPengalaman = () => {
             disabled={saving}
             className="mt-4 px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors disabled:opacity-50"
           >
-            {saving ? 'Menyimpan...' : 'Simpan Foto Organisasi'}
+            {saving ? 'Menyimpan...' : 'Simpan'}
           </button>
         </form>
       </div>
