@@ -80,11 +80,11 @@ const HomePage = () => {
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <ScrollAnimate>
             <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="flex-1">
+              <div className="w-full md:w-[50%]">
                 <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
                   {profile?.nama || 'Nama Anda'}
                 </h1>
-                <p className="text-lg text-white/60 mb-6">
+                <p className="text-lg text-white/60 mb-6 line-clamp-5 text-justify">
                   {profile?.deskripsi || 'Deskripsi tentang diri Anda'}
                 </p>
                 <div className="flex gap-4">
@@ -106,11 +106,11 @@ const HomePage = () => {
                 </div>
               </div>
               {profile?.foto_url && (
-                <div className="shrink-0">
+                <div className="flex-1 flex justify-center">
                   <img
                     src={profile.foto_url}
                     alt={profile.nama}
-                    className="w-48 h-48 rounded-full object-cover border-4 border-white/10"
+                    className="w-72 h-72 rounded-full object-cover border-4 border-white/10"
                   />
                 </div>
               )}
