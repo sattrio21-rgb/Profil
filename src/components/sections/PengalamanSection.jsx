@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+                import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
 import ScrollAnimate from '../ui/ScrollAnimate'
 
@@ -50,7 +50,7 @@ const PengalamanSection = () => {
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-white line-clamp-1">{item.nama_organisasi}</h3>
-                    <span className={`px-2 py-0.5 text-xs rounded-full shrink-0 ${item.kategori === 'hima' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-blue-500/10 text-blue-400'}`}>
+                    <span className={`px-2 py-0.5 text-xs rounded-full shrink-0 ${item.kategori === 'hima' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-500/10 text-emerald-400'}`}>
                       {item.kategori.toUpperCase()}
                     </span>
                   </div>
