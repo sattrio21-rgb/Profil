@@ -31,7 +31,7 @@ const ProjectPage = () => {
   return (
     <>
       {/* Header */}
-      <section className="pt-20 pb-6">
+      <section className="py-6">
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="max-w-2xl">
             <Link to="/#project" replace className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors mb-6">

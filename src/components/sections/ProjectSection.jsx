@@ -5,7 +5,7 @@ const ProjectSection = ({ projects }) => {
   if (projects.length === 0) return null
 
   return (
-    <section id="project" className="py-12">
+    <section id="project" className="pt-12 pb-8">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <ScrollAnimate>
           <div className="flex items-center justify-between mb-6">

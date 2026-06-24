@@ -4,7 +4,7 @@ const PendidikanSection = ({ pendidikans }) => {
   if (pendidikans.length === 0) return null
 
   return (
-    <section id="pendidikan" className="py-12">
+    <section id="pendidikan" className="pt-18 pb-8">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <ScrollAnimate>
           <h2 className="text-2xl font-bold text-white mb-6 text-center">Pendidikan</h2>

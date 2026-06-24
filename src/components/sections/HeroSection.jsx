@@ -3,7 +3,7 @@ import ScrollAnimate from '../ui/ScrollAnimate'
 
 const HeroSection = ({ profile }) => {
   return (
-    <section id="profil" className="pt-20 pb-12">
+    <section id="profil" className="pt-4 pb-20">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <ScrollAnimate>
           <div className="flex flex-col md:flex-row items-center gap-12">

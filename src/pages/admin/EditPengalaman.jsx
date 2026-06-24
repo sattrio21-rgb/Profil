@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { supabase, uploadFile } from '../../lib/supabase'
 
 const EditPengalaman = () => {
@@ -10,6 +10,7 @@ const EditPengalaman = () => {
   const [showForm, setShowForm] = useState(false)
   const [editingId, setEditingId] = useState(null)
   const [foto, setFoto] = useState(null)
+  const formRef = useRef(null)
 
   // Form data untuk foto organisasi
   const [orgFormData, setOrgFormData] = useState({
@@ -25,8 +26,6 @@ const EditPengalaman = () => {
   const [formData, setFormData] = useState({
     nama_organisasi: '',
     jabatan: '',
-    tanggal_mulai: '',
-    tanggal_selesai: '',
     deskripsi: '',
     kategori: 'hima',
   })
@@ -112,8 +111,6 @@ const EditPengalaman = () => {
     setFormData({
       nama_organisasi: '',
       jabatan: '',
-      tanggal_mulai: '',
-      tanggal_selesai: '',
       deskripsi: '',
       kategori: 'hima',
     })
@@ -126,13 +123,14 @@ const EditPengalaman = () => {
     setFormData({
       nama_organisasi: item.nama_organisasi,
       jabatan: item.jabatan,
-      tanggal_mulai: item.tanggal_mulai,
-      tanggal_selesai: item.tanggal_selesai || '',
       deskripsi: item.deskripsi || '',
       kategori: item.kategori,
     })
     setEditingId(item.id)
     setShowForm(true)
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
   }
 
   const handlePengalamanSubmit = async (e) => {
@@ -153,8 +151,8 @@ const EditPengalaman = () => {
           .from('pengalamans')
           .update({
             ...formData,
+            tanggal_mulai: new Date().toISOString().split('T')[0],
             foto_url: fotoUrl || undefined,
-            tanggal_selesai: formData.tanggal_selesai || null,
             updated_at: new Date().toISOString(),
           })
           .eq('id', editingId)
@@ -167,8 +165,8 @@ const EditPengalaman = () => {
           .from('pengalamans')
           .insert({
             ...formData,
+            tanggal_mulai: new Date().toISOString().split('T')[0],
             foto_url: fotoUrl,
-            tanggal_selesai: formData.tanggal_selesai || null,
           })
 
         if (error) throw error
@@ -328,14 +326,14 @@ const EditPengalaman = () => {
 
         {/* Form Tambah/Edit Pengalaman */}
         {showForm && (
-          <div className="bg-gray-50 rounded-lg p-4 mb-4">
+          <div ref={formRef} className="bg-gray-50 rounded-lg p-4 mb-4">
             <h3 className="font-medium text-gray-700 mb-3">
               {editingId ? 'Edit Pengalaman' : 'Tambah Pengalaman'}
             </h3>
             <form onSubmit={handlePengalamanSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Nama Organisasi *</label>
+                  <label className="block text-sm text-gray-600 mb-1">Nama Program Kerja </label>
                   <input
                     type="text"
                     name="nama_organisasi"
@@ -346,7 +344,7 @@ const EditPengalaman = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Jabatan *</label>
+                  <label className="block text-sm text-gray-600 mb-1">Divisi </label>
                   <input
                     type="text"
                     name="jabatan"
@@ -357,28 +355,7 @@ const EditPengalaman = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Tanggal Mulai *</label>
-                  <input
-                    type="date"
-                    name="tanggal_mulai"
-                    value={formData.tanggal_mulai}
-                    onChange={handlePengalamanChange}
-                    required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">Tanggal Selesai</label>
-                  <input
-                    type="date"
-                    name="tanggal_selesai"
-                    value={formData.tanggal_selesai}
-                    onChange={handlePengalamanChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-600 mb-1">Kategori *</label>
+                  <label className="block text-sm text-gray-600 mb-1">Kategori </label>
                   <select
                     name="kategori"
                     value={formData.kategori}
@@ -452,13 +429,6 @@ const EditPengalaman = () => {
                     </span>
                   </div>
                   <p className="text-sm text-gray-600">{item.jabatan}</p>
-                  <p className="text-xs text-gray-500">
-                    {new Date(item.tanggal_mulai).toLocaleDateString('id-ID', { month: 'short', year: 'numeric' })}
-                    {item.tanggal_selesai
-                      ? ` — ${new Date(item.tanggal_selesai).toLocaleDateString('id-ID', { month: 'short', year: 'numeric' })}`
-                      : ' — Sekarang'
-                    }
-                  </p>
                 </div>
                 <div className="flex gap-2">
                   <button
