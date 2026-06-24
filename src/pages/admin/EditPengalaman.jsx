@@ -12,16 +12,6 @@ const EditPengalaman = () => {
   const [foto, setFoto] = useState(null)
   const formRef = useRef(null)
 
-  // Form data untuk foto organisasi
-  const [orgFormData, setOrgFormData] = useState({
-    judul_hima: '',
-    deskripsi_hima: '',
-    judul_bem: '',
-    deskripsi_bem: '',
-  })
-  const [fotoHima, setFotoHima] = useState(null)
-  const [fotoBem, setFotoBem] = useState(null)
-
   // Form data untuk pengalaman
   const [formData, setFormData] = useState({
     nama_organisasi: '',
@@ -48,59 +38,10 @@ const EditPengalaman = () => {
 
     if (profileData) {
       setProfile(profileData)
-      setOrgFormData({
-        judul_hima: profileData.judul_hima || '',
-        deskripsi_hima: profileData.deskripsi_hima || '',
-        judul_bem: profileData.judul_bem || '',
-        deskripsi_bem: profileData.deskripsi_bem || '',
-      })
     }
 
     setPengalamans(pengalamanData || [])
     setLoading(false)
-  }
-
-  const handleOrgChange = (e) => {
-    setOrgFormData({ ...orgFormData, [e.target.name]: e.target.value })
-  }
-
-  const handleOrgSubmit = async (e) => {
-    e.preventDefault()
-    setSaving(true)
-    setMessage('')
-
-    try {
-      let fotoHimaUrl = profile?.foto_hima_url
-      let fotoBemUrl = profile?.foto_bem_url
-
-      if (fotoHima) {
-        fotoHimaUrl = await uploadFile('foto-organisasi', fotoHima, profile?.foto_hima_url)
-      }
-      if (fotoBem) {
-        fotoBemUrl = await uploadFile('foto-organisasi', fotoBem, profile?.foto_bem_url)
-      }
-
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          ...orgFormData,
-          foto_hima_url: fotoHimaUrl,
-          foto_bem_url: fotoBemUrl,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', profile.id)
-
-      if (error) throw error
-
-      setMessage('Foto organisasi berhasil disimpan!')
-      setProfile({ ...profile, ...orgFormData, foto_hima_url: fotoHimaUrl, foto_bem_url: fotoBemUrl })
-      setFotoHima(null)
-      setFotoBem(null)
-    } catch (err) {
-      setMessage('Gagal menyimpan: ' + err.message)
-    } finally {
-      setSaving(false)
-    }
   }
 
   const handlePengalamanChange = (e) => {
@@ -220,95 +161,6 @@ const EditPengalaman = () => {
           {message}
         </div>
       )}
-
-      {/* Foto Organisasi Section */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Foto Organisasi</h2>
-        <form onSubmit={handleOrgSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* HIMA */}
-            <div>
-              <h3 className="font-medium text-gray-700 mb-3">HIMA</h3>
-              <div className="mb-3">
-                <label className="block text-sm text-gray-600 mb-1">Judul</label>
-                <input
-                  type="text"
-                  name="judul_hima"
-                  value={orgFormData.judul_hima}
-                  onChange={handleOrgChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm text-gray-600 mb-1">Deskripsi</label>
-                <input
-                  type="text"
-                  name="deskripsi_hima"
-                  value={orgFormData.deskripsi_hima}
-                  onChange={handleOrgChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">Foto</label>
-                {profile?.foto_hima_url && (
-                  <img src={profile.foto_hima_url} alt="HIMA" className="w-16 h-16 rounded-lg object-cover mb-2" />
-                )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setFotoHima(e.target.files[0])}
-                  className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
-                />
-              </div>
-            </div>
-
-            {/* BEM */}
-            <div>
-              <h3 className="font-medium text-gray-700 mb-3">BEM</h3>
-              <div className="mb-3">
-                <label className="block text-sm text-gray-600 mb-1">Judul</label>
-                <input
-                  type="text"
-                  name="judul_bem"
-                  value={orgFormData.judul_bem}
-                  onChange={handleOrgChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="block text-sm text-gray-600 mb-1">Deskripsi</label>
-                <input
-                  type="text"
-                  name="deskripsi_bem"
-                  value={orgFormData.deskripsi_bem}
-                  onChange={handleOrgChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">Foto</label>
-                {profile?.foto_bem_url && (
-                  <img src={profile.foto_bem_url} alt="BEM" className="w-16 h-16 rounded-lg object-cover mb-2" />
-                )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setFotoBem(e.target.files[0])}
-                  className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100"
-                />
-              </div>
-            </div>
-          </div>
-          <button
-            type="submit"
-            disabled={saving}
-            className="mt-4 px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors disabled:opacity-50"
-          >
-            {saving ? 'Menyimpan...' : 'Simpan'}
-          </button>
-        </form>
-      </div>
 
       {/* Daftar Pengalaman Section */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
