@@ -9,8 +9,6 @@ import AdminLayout from './components/layout/AdminLayout'
 // Public Pages
 import HomePage from './pages/public/HomePage'
 import PengalamanPage from './pages/public/PengalamanPage'
-import HimaPage from './pages/public/HimaPage'
-import BemPage from './pages/public/BemPage'
 import ProjectPage from './pages/public/ProjectPage'
 
 // Auth Pages
@@ -69,8 +67,6 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<PortfolioLayout><HomePage /></PortfolioLayout>} />
         <Route path="/pengalaman" element={<PortfolioLayout><PengalamanPage /></PortfolioLayout>} />
-        <Route path="/pengalaman/hima" element={<PortfolioLayout><HimaPage /></PortfolioLayout>} />
-        <Route path="/pengalaman/bem" element={<PortfolioLayout><BemPage /></PortfolioLayout>} />
         <Route path="/project" element={<PortfolioLayout><ProjectPage /></PortfolioLayout>} />
 
         {/* Auth Routes */}

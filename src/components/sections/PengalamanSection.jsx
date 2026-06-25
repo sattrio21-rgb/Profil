@@ -1,4 +1,5 @@
-                import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import ScrollAnimate from '../ui/ScrollAnimate'
 
@@ -11,6 +12,7 @@ const PengalamanSection = () => {
         .from('pengalamans')
         .select('*')
         .order('created_at', { ascending: false })
+        .limit(3)
 
       setPengalamans(data || [])
     }
@@ -23,7 +25,12 @@ const PengalamanSection = () => {
     <section id="pengalaman" className="py-12">
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <ScrollAnimate>
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">Pengalaman Organisasi</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-white">Pengalaman Organisasi</h2>
+            <Link to="/pengalaman" className="text-emerald-400 hover:text-emerald-300 text-sm font-medium">
+              Lihat Semua →
+            </Link>
+          </div>
         </ScrollAnimate>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {pengalamans.map((item, index) => (
@@ -50,7 +57,7 @@ const PengalamanSection = () => {
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-white line-clamp-1">{item.nama_organisasi}</h3>
-                    <span className={`px-2 py-0.5 text-xs rounded-full shrink-0 ${item.kategori === 'hima' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-emerald-500/10 text-emerald-400'}`}>
+                    <span className="px-2 py-0.5 text-xs rounded-full shrink-0 bg-emerald-500/10 text-emerald-400">
                       {item.kategori.toUpperCase()}
                     </span>
                   </div>
