@@ -14,7 +14,7 @@ import ProjectPage from './pages/public/ProjectPage'
 // Auth Pages
 import LoginPage from './pages/auth/LoginPage'
 
-// Admin Page
+// Admin Pages
 import Dashboard from './pages/admin/Dashboard'
 import EditProfil from './pages/admin/EditProfil'
 import EditPendidikan from './pages/admin/EditPendidikan'
