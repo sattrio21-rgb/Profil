@@ -11,7 +11,7 @@ import HomePage from './pages/public/HomePage'
 import PengalamanPage from './pages/public/PengalamanPage'
 import ProjectPage from './pages/public/ProjectPage'
 
-// Auth Page
+// Auth Pages
 import LoginPage from './pages/auth/LoginPage'
 
 // Admin Pages
