@@ -6,7 +6,7 @@ import ScrollToTop from './components/ui/ScrollToTop'
 import PortfolioLayout from './components/layout/PortfolioLayout'
 import AdminLayout from './components/layout/AdminLayout'
 
-// Public Pages
+// Public Page
 import HomePage from './pages/public/HomePage'
 import PengalamanPage from './pages/public/PengalamanPage'
 import ProjectPage from './pages/public/ProjectPage'
