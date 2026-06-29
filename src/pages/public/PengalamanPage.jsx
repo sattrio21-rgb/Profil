@@ -30,7 +30,7 @@ const PengalamanPage = () => {
 
   return (
     <>
-      {/*  */}
+      {/* Header */}
       <section className="pt-16 pb-6">
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <div className="max-w-2xl">
