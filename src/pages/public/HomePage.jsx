@@ -77,7 +77,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="min-h-screen w-3xl mx-auto bg-[#0a0a0a] text-white">
+    <div className="min-h-screen w-5xl mx-auto bg-[#0a0a0a] text-white">
       <HeroSection profile={profile} />
       <PendidikanSection pendidikans={pendidikans} />
       <PengalamanSection />
