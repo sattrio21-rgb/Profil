@@ -80,7 +80,7 @@ const HomePage = () => {
     <div className="min-h-screen w-5xl mx-auto bg-[#0a0a0a] text-white">
       <HeroSection profile={profile} />
       <PendidikanSection pendidikans={pendidikans} />
-      <PenglamanSection />
+      <PengalamanSection />
       <ProjectSection projects={projects} />
     </div>
   )
