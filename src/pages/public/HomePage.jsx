@@ -34,7 +34,7 @@ const HomePage = () => {
         const { data: pengalamanData } = await supabase
           .from('pengalamans')
           .select('*')
-          .order('mulai', { ascending: false })
+          .order('tanggal_mulai', { ascending: false })
           .limit(3)
 
         // Fetch latest 3 projects
