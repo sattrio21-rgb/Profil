@@ -39,7 +39,7 @@ const PengalamanPage = () => {
               Kembali
             </Link>
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Pengalaman Organisasi</h1>
-            <p className="text-lg text-white/60">Semua pengalaman  yang pernah saya ikuti.</p>
+            <p className="text-lg text-white/60">Semua pengalaman organisasi yang pernah saya ikuti.</p>
           </div>
         </div>
       </section>
